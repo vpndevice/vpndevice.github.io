@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="canonical" href="https://vpndevice.github.io/news/article-59463.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>为什么HttpContextAccessor要这么设计?</title>
+        <meta name="description" content="前言 周五在群里面有小伙伴问，ASP.NET Core这个HttpContextAccessor为什么改成了这个样子？ 在印象中，这已经是第三次遇到有小伙伴问这个问题了，特意来写一篇记录，来回答一下这" />
+        <link rel="icon" href="/assets/website/img/v2rayunode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="VPN设备 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpndevice.github.io/news/article-59463.htm" />
+    <meta property="og:site_name" content="VPN设备 机场订阅节点官网" />
+    <meta property="og:title" content="为什么HttpContextAccessor要这么设计?" />
+    <meta property="og:image" content="https://vpndevice.github.io/uploads/20241222-1/becabf2a83a60c5b8ca26e178386a903.webp" />
+        <meta property="og:release_date" content="2025-02-19T06:38:15" />
+    <meta property="og:updated_time" content="2025-02-19T06:38:15" />
+        <meta property="og:description" content="前言 周五在群里面有小伙伴问，ASP.NET Core这个HttpContextAccessor为什么改成了这个样子？ 在印象中，这已经是第三次遇到有小伙伴问这个问题了，特意来写一篇记录，来回答一下这" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="为什么HttpContextAccessor要这么设计?">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZMF5N22VMQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZMF5N22VMQ');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="page-top" data-page="detail">
+        <!-- Navigation
+        ==========================================-->
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+
+                <a class="navbar-brand" href="/">
+                                        <span>VPN设备</span>
+                                    </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                    </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+    <!-- Header -->
+    <header id="header">
+        <div class="intro category">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 intro-text">
+                            <h1>为什么HttpContextAccessor要这么设计?</h1>
+                            <p>
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- About Section -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2 id="前言">前言</h2> <p>周五在群里面有小伙伴问，ASP.NET Core这个<code>HttpContextAccessor</code>为什么改成了这个样子？<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/dc65ab8bab6281c6a427d17e642ffadc.jpg" alt="为什么HttpContextAccessor要这么设计?"><br /> 在印象中，这已经是第三次遇到有小伙伴问这个问题了，特意来写一篇记录，来回答一下这个问题。</p> <h2 id="聊一聊历史">聊一聊历史</h2> <p>关于<code>HttpContext</code>其实我们大家都不陌生，它封装了<code>HttpRequest</code>和<code>HttpResponse</code>，在处理Http请求时，起着至关重要的作用。</p> <h3 id="callcontext时代">CallContext时代</h3> <p>那么如何访问<code>HttpContext</code>对象呢？回到<code>await/async</code>出现以前的ASP.NET的时代，我们可以通过<code>HttpContext.Current</code>方法直接访问当前Http请求的<code>HttpContext</code>对象，因为当时基本都是同步的代码，一个Http请求只会在一个线程中处理，所以我们可以使用能在当前线程中传播的<code>CallContext.HostContext</code>来保存<code>HttpContext</code>对象，它的代码长这个样子。</p> <pre><code class="language-C#">namespace System.Web.Hosting {       using System.Web;     using System.Web.Configuration;     using System.Runtime.Remoting.Messaging;     using System.Security.Permissions;          internal class ContextBase {           internal static Object Current {             get {                 // CallContext在不同的线程中不一样                 return CallContext.HostContext;             }               [SecurityPermission(SecurityAction.Demand, Unrestricted = true)]             set {                 CallContext.HostContext = value;             }         }         ......     } }}</code></pre> <p>一切都很美好，但是后面微软在C#为了进一步增强增强了异步IO的性能，从而实现的stackless协程，加入了<code>await/async</code>关键字（感兴趣的小伙伴可以阅读<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/eventhorizon/p/15824541.html"  target="_blank" rel="nofollow">黑洞的这一系列文章</a>），同一个方法内的代码<code>await</code>前与后不一定在同一个线程中执行，那么就会造成在<code>await</code>之后的代码使用<code>HttpContext.Current</code>的时候访问不到当前的<code>HttpContext</code>对象，下面有一段这个问题简单的复现代码。</p> <pre><code class="language-C#">// 设置当前线程HostContext CallContext.HostContext = new Dictionary&lt;string, string&gt;  { 	["ContextKey"] = "ContextValue" }; // await前，可以正常访问 Console.Write($"[{Thread.CurrentThread.ManagedThreadId}] await before："); Console.WriteLine(((Dictionary&lt;string,string&gt;)CallContext.HostContext)["ContextKey"]);  await Task.Delay(100);  // await后，切换了线程，无法访问 Console.Write($"[{Thread.CurrentThread.ManagedThreadId}] await after："); Console.WriteLine(((Dictionary&lt;string,string&gt;)CallContext.HostContext)["ContextKey"]);</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a1a124c0ff288fbdd76a5a2c6b11b45f.jpg" alt="为什么HttpContextAccessor要这么设计?"><br /> 可以看到await执行之前HostContext是可以正确的输出赋值的对象和数据，但是await以后的代码由于线程从<code>16</code>切换到<code>29</code>，所以访问不到上面代码给HostContext设置的对象了。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f8452fab12498991a917b017532675a9.jpg" alt="为什么HttpContextAccessor要这么设计?"></p> <h3 id="asynclocal时代">AsyncLocal时代</h3> <p>为了解决这个问题，微软在.NET 4.6中引入了<code>AsyncLocal&lt;T&gt;</code>类，后面重新设计的ASP.NET Core自然就用上了<code>AsyncLocal&lt;T&gt;</code>来存储当前Http请求的HttpContext对象，也就是开头截图的代码一样，我们来尝试一下。</p> <pre><code class="language-C#">var asyncLocal = new AsyncLocal&lt;Dictionary&lt;string,string&gt;&gt;();  // 设置当前线程HostContext asyncLocal.Value = new Dictionary&lt;string, string&gt;  { 	["ContextKey"] = "ContextValue" }; // await前，可以正常访问 Console.Write($"[{Thread.CurrentThread.ManagedThreadId}] await before："); Console.WriteLine(asyncLocal.Value["ContextKey"]);  await Task.Delay(100);  // await后，切换了线程，可以访问 Console.Write($"[{Thread.CurrentThread.ManagedThreadId}] await after："); Console.WriteLine(asyncLocal.Value["ContextKey"]);</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a07bd05122f258c9ad9aaae629db521b.jpg" alt="为什么HttpContextAccessor要这么设计?"><br /> 没有任何问题，线程从16切换到了17，一样的可以访问。对AsyncLocal感兴趣的小伙伴可以看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/eventhorizon/p/12240767.html"  target="_blank" rel="nofollow">黑洞的这篇文章</a>。简单的说就是AsyncLocal默认会将当前线程保存的上下对象在发生await的时候传播到后续的线程上。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/910f53e6fd31dea44da87d6c1b2217be.jpg" alt="为什么HttpContextAccessor要这么设计?"><br /> 这看起来就非常的美好了，既能开开心心的用<code>await/async</code>又不用担心上下文数据访问不到，那为什么ASP.NET Core的后续版本需要修改<code>HttpContextAccesor</code>呢？我们自己来实现ContextAccessor，大家看下面一段代码。</p> <pre><code class="language-C#">// 给Context赋值一下 var accessor = new ContextAccessor(); accessor.Context =  "ContextValue"; Console.WriteLine($"[{Thread.CurrentThread.ManagedThreadId}] Main-1：{accessor.Context}");  // 执行方法 await Method();  // 再打印一下 Console.WriteLine($"[{Thread.CurrentThread.ManagedThreadId}] Main-2：{accessor.Context}");  async Task Method() { 	// 输出Context内容 	Console.WriteLine($"[{Thread.CurrentThread.ManagedThreadId}] Method-1：{accessor.Context}"); 	await Task.Delay(100); 	// 注意！！！，我在这里将Context对象清空 	Console.WriteLine($"[{Thread.CurrentThread.ManagedThreadId}] Method-2：{accessor.Context}"); 	accessor.Context = null; 	Console.WriteLine($"[{Thread.CurrentThread.ManagedThreadId}] Method-3：{accessor.Context}"); }  // 实现一个简单的Context Accessor public class ContextAccessor { 	static AsyncLocal&lt;string&gt; _contextCurrent = new AsyncLocal&lt;string&gt;();  	public string Context 	{ 		get =&gt; _contextCurrent.Value; 		set =&gt; _contextCurrent.Value = value; 	} }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/eefc3cab5a3c1ddcb275d7f23dc3acd4.jpg" alt="为什么HttpContextAccessor要这么设计?"></p> <p>奇怪的事情就发生了，为什么明明在Method中把Context对象置为null了，<code>Method-3</code>中已经输出为null了，为啥在<code>Main-2</code>输出中还是ContextValue呢？<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f8efde399c032fed0b81ab5101efa8f7.jpg" alt="为什么HttpContextAccessor要这么设计?"></p> <h3 id="asynclocal使用的问题">AsyncLocal使用的问题</h3> <p><strong>其实这已经解答了上面的问题，就是为什么在ASP.NET Core 6.0中的实现方式突然变了</strong>，有这样一种场景，已经当前线程中把HttpContext置空了，但是其它线程仍然能访问HttpContext对象，导致后续的行为可能不一致。</p> <p>那为什么会造成这个问题呢？首先我们得知道<code>AsyncLocal</code>是如何实现的，这里我就不在赘述，详细可以看我前面给的链接（黑洞大佬的文章）。这里只简单的说一下，我们只需要知道<code>AsyncLocal</code>底层是通过<code>ExecutionContext</code>实现的，每次设置Value时都会用新的Context对象来覆盖原有的，代码如下所示(有删减)。</p> <pre><code class="language-C#">public sealed class AsyncLocal&lt;T&gt; : IAsyncLocal {     public T Value     {         [SecuritySafeCritical]         get         {             // 从ExecutionContext中获取当前线程的值             object obj = ExecutionContext.GetLocalValue(this);             return (obj == null) ? default(T) : (T)obj;         }         [SecuritySafeCritical]         set         {             // 设置值              ExecutionContext.SetLocalValue(this, value, m_valueChangedHandler != null);         }     } }  ...... public sealed class ExecutionContext : IDisposable, ISerializable { 	internal static void SetLocalValue(IAsyncLocal local, object newValue, bool needChangeNotifications) 	{ 		var current = Thread.CurrentThread.GetMutableExecutionContext();  		object previousValue = null;  		if (previousValue == newValue) 			return;  		var newValues = current._localValues;         // 无论是AsyncLocalValueMap.Create 还是 newValues.Set          // 都会创建一个新的IAsyncLocalValueMap对象来覆盖原来的值 		if (newValues == null) 		{ 			newValues = AsyncLocalValueMap.Create(local, newValue, treatNullValueAsNonexistent: !needChangeNotifications); 		} 		else 		{ 			newValues = newValues.Set(local, newValue, treatNullValueAsNonexistent: !needChangeNotifications); 		} 		current._localValues = newValues;         ...... 	} }</code></pre> <p>接下来我们需要避开<code>await/async</code>语法糖的影响，反编译一下IL代码，使用C# 1.0来重新组织代码(使用ilspy或者dnspy之类都可以)。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d7dc9dd0fae175ada9e7562821a80320.jpg" alt="为什么HttpContextAccessor要这么设计?"><br /> 可以看到原本的语法糖已经被拆解成stackless状态机，这里我们重点关注<code>Start</code>方法。进入<code>Start</code>方法内部，我们可以看到以下代码，<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/dotnet/runtime/blob/e99fb185aa10ef177d19a51fd77b7a4b75db5395/src/libraries/System.Private.CoreLib/src/System/Runtime/CompilerServices/AsyncMethodBuilderCore.cs#L21"  target="_blank" rel="nofollow">源码链接</a>。</p> <pre><code class="language-C#">...... // Start方法 public static void Start&lt;TStateMachine&gt;(ref TStateMachine stateMachine) where TStateMachine : IAsyncStateMachine {     if (stateMachine == null)     {         ThrowHelper.ThrowArgumentNullException(ExceptionArgument.stateMachine);     }      Thread currentThread = Thread.CurrentThread;     // 备份当前线程的 executionContext     ExecutionContext? previousExecutionCtx = currentThread._executionContext;     SynchronizationContext? previousSyncCtx = currentThread._synchronizationContext;      try     {         // 执行状态机         stateMachine.MoveNext();     }     finally     {         if (previousSyncCtx != currentThread._synchronizationContext)         {             // Restore changed SynchronizationContext back to previous             currentThread._synchronizationContext = previousSyncCtx;         }          ExecutionContext? currentExecutionCtx = currentThread._executionContext;         // 如果executionContext发生变化，那么调用RestoreChangedContextToThread方法还原         if (previousExecutionCtx != currentExecutionCtx)         {             ExecutionContext.RestoreChangedContextToThread(currentThread, previousExecutionCtx, currentExecutionCtx);         }     } } ...... // 调用RestoreChangedContextToThread方法 internal static void RestoreChangedContextToThread(Thread currentThread, ExecutionContext? contextToRestore, ExecutionContext? currentContext) {     Debug.Assert(currentThread == Thread.CurrentThread);     Debug.Assert(contextToRestore != currentContext);      // 将改变后的ExecutionContext恢复到之前的状态     currentThread._executionContext = contextToRestore;     ...... }</code></pre> <p>通过上面的代码我们就不难看出，为什么会存在这样的问题了，是因为状态机的<code>Start</code>方法会备份当前线程的<code>ExecuteContext</code>，如果<code>ExecuteContext</code>在状态机内方法调用时发生了改变，那么就会<strong>还原</strong>回去。<br /> 又因为上文提到的<code>AsyncLocal</code>底层实现是<code>ExecuteContext</code>，每次SetValue时都会生成一个新的<code>IAsyncLocalValueMap</code>对象覆盖当前的<code>ExecuteContext</code>，必然修改就会被<strong>还原</strong>回去了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4fbf4c48c8055adfd67f3ecca7dc2d7a.jpg" alt="为什么HttpContextAccessor要这么设计?"></p> <h3 id="aspnet-core的解决方案">ASP.NET Core的解决方案</h3> <p>在ASP.NET Core中，解决这个问题的方法也很巧妙，就是简单的包了一层。我们也可以简单的包一层对象。</p> <pre><code class="language-C#">public class ContextHolder {  	public string Context {get;set;} }  public class ContextAccessor { 	static AsyncLocal&lt;ContextHolder&gt; _contextCurrent = new AsyncLocal&lt;ContextHolder&gt;();  	public string Context 	{ 		get =&gt; _contextCurrent.Value?.Context; 		set  		{  			var holder = _contextCurrent.Value;             // 拿到原来的holder 直接修改成新的value             // asp.net core源码是设置为null 因为在它的逻辑中执行到了这个Set方法             // 就必然是一个新的http请求，需要把以前的清空 			if (holder != null) holder.Context = value;             // 如果没有holder 那么新建 			else _contextCurrent.Value = new ContextHolder { Context = value}; 		} 	} }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/cd286744933ccbb71e3ecb4635f6fc3d.jpg" alt="为什么HttpContextAccessor要这么设计?"></p> <p>最终结果就和我们预期的一致了，流程也如下图一样。自始至终都是修改的同一个<code>ContextHolder</code>对象。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/504dc4dd5a23936021637c2462b049c6.jpg" alt="为什么HttpContextAccessor要这么设计?"></p> <h2 id="总结">总结</h2> <p>由上可见，ASP.NET Core 6.0的<code>HttpContextAccessor</code>那样设计的原因就是为了解决AsyncLocal在<code>await</code>环境中会发生复制，导致不能及时清除历史的<code>HttpContext</code>的问题。<br /><strong>笔者水平有限，如果错漏，欢迎指出，感谢各位的阅读！</strong></p> <h2 id="附录">附录</h2> <p>ASP.NET Core 2.1 HttpContextAccessor源码：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/dotnet/aspnetcore/blob/v2.1.33/src/Http/Http/src/HttpContextAccessor.cs"  target="_blank" rel="nofollow">link</a><br /> ASP.NET Core 6.0 HttpContextAccessor源码：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/dotnet/aspnetcore/blob/v6.0.4/src/Http/Http/src/HttpContextAccessor.cs"  target="_blank" rel="nofollow">link</a><br /> AsyncMethod Start方法源码:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Runtime/CompilerServices/AsyncMethodBuilderCore.cs#L21"  target="_blank" rel="nofollow">link</a><br /> AsyncLocal源码：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Threading/AsyncLocal.cs"  target="_blank" rel="nofollow">link</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58921.htm">一片片枫叶从树上落下来就像（一片片枫叶从树上落下来就像什么补充句子）</a></p>
+                                        <p>下一个：<a href="/news/article-59464.htm">宠物猫要多少钱（宠物猫多少钱?）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-57251.htm" title="vs code编写web项目">vs code编写web项目</a></li>
+                        <li class="py-2"><a href="/news/article-57252.htm" title="中国宠物食品排名（中国宠物食品排名榜）">中国宠物食品排名（中国宠物食品排名榜）</a></li>
+                        <li class="py-2"><a href="/news/article-58312.htm" title="动物疫苗是什么单位负责的（动物疫苗是什么单位负责的呢）">动物疫苗是什么单位负责的（动物疫苗是什么单位负责的呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-17-free-v2ray.htm" title="VPN设备 | 2月17日19.3M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">VPN设备 | 2月17日19.3M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-57746.htm" title="广州领养宠物的地方是哪里（广州有领养宠物猫的地方吗?）">广州领养宠物的地方是哪里（广州有领养宠物猫的地方吗?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-node-share.htm" title="VPN设备 | 2月15日18.3M/S|免费VPN/V2ray/Clash/SSR/Shadowrocket免费节点订阅分享">VPN设备 | 2月15日18.3M/S|免费VPN/V2ray/Clash/SSR/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-free-v2ray.htm" title="VPN设备 | 2月18日19.1M/S|免费VPN/Clash/V2ray/Shadowrocket/SSR免费节点订阅分享">VPN设备 | 2月18日19.1M/S|免费VPN/Clash/V2ray/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-58313.htm" title="长沙市宠物领养中心有哪些 长沙市宠物领养中心有哪些地方">长沙市宠物领养中心有哪些 长沙市宠物领养中心有哪些地方</a></li>
+                        <li class="py-2"><a href="/news/article-58921.htm" title="一片片枫叶从树上落下来就像（一片片枫叶从树上落下来就像什么补充句子）">一片片枫叶从树上落下来就像（一片片枫叶从树上落下来就像什么补充句子）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-19-free-v2ray.htm" title="VPN设备 | 2月19日18.3M/S|免费VPN/Shadowrocket/SSR/V2ray/Clash免费节点订阅分享">VPN设备 | 2月19日18.3M/S|免费VPN/Shadowrocket/SSR/V2ray/Clash免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Footer Section -->
+    <div id="footer">
+        <div class="container text-center">
+            <p>
+                <a href="/">首页</a> |
+                <a href="/free-node/">免费节点</a> |
+                <a href="/news/">新闻资讯</a> |
+                <a href="/about-us.htm">关于我们</a> |
+                <a href="/disclaimer.htm">免责申明</a> |
+                <a href="/privacy.htm">隐私申明</a> |
+                <a href="/sitemap.xml">网站地图</a>
+            </p>
+            <p>
+                <a href="/">VPN设备 机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jquery.1.11.1.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/SmoothScroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/nivo-lightbox.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jqBootstrapValidation.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/contact_me.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
