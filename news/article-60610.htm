@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="canonical" href="https://vpndevice.github.io/news/article-60610.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Java高并发优化：中间件redis</title>
+        <meta name="description" content="Redis  1. 高并发系统设计的目标 2. 高并发中的问题 3. 消息队列，和redis的使用场景 3. Redis为什么这么快（特点） 4. 使用Redis要注意的问题   1. 缓存与数据库的" />
+        <link rel="icon" href="/assets/website/img/v2rayunode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="VPN设备 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpndevice.github.io/news/article-60610.htm" />
+    <meta property="og:site_name" content="VPN设备 机场订阅节点官网" />
+    <meta property="og:title" content="Java高并发优化：中间件redis" />
+    <meta property="og:image" content="https://vpndevice.github.io/uploads/20241222-1/8d67d6a7bd5b99658b08a2aefb0804ae.webp" />
+        <meta property="og:release_date" content="2025-02-21T09:21:59" />
+    <meta property="og:updated_time" content="2025-02-21T09:21:59" />
+        <meta property="og:description" content="Redis  1. 高并发系统设计的目标 2. 高并发中的问题 3. 消息队列，和redis的使用场景 3. Redis为什么这么快（特点） 4. 使用Redis要注意的问题   1. 缓存与数据库的" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java高并发优化：中间件redis">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZMF5N22VMQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZMF5N22VMQ');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="page-top" data-page="detail">
+        <!-- Navigation
+        ==========================================-->
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+
+                <a class="navbar-brand" href="/">
+                                        <span>VPN设备</span>
+                                    </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                    </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+    <!-- Header -->
+    <header id="header">
+        <div class="intro category">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 intro-text">
+                            <h1>Java高并发优化：中间件redis</h1>
+                            <p>
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- About Section -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>Redis</h3> <ul> <li><a href="#1__2" rel="nofollow">1. 高并发系统设计的目标</a></li> <li><a href="#2__17" rel="nofollow">2. 高并发中的问题</a></li> <li><a href="#3_redis_38" rel="nofollow">3. 消息队列，和redis的使用场景</a></li> <li><a href="#3_Redis_50" rel="nofollow">3. Redis为什么这么快（特点）</a></li> <li><a href="#4_Redis_57" rel="nofollow">4. 使用Redis要注意的问题</a></li> <li> <ul> <li><a href="#1__58" rel="nofollow">1. 缓存与数据库的一致性问题</a></li> <li><a href="#2__66" rel="nofollow">2. 缓存雪崩</a></li> <li><a href="#3__76" rel="nofollow">3. 缓存穿透</a></li> </ul> </li> <li><a href="#5_Redis__84" rel="nofollow">5. Redis 常⻅数据结构</a></li> <li><a href="#6_Redis__91" rel="nofollow">6. Redis 设置过期时间底层</a></li> <li><a href="#_99" rel="nofollow"></a></li> <li><a href="#7_Redis__102" rel="nofollow">7. Redis 内存淘汰机制</a></li> <li><a href="#8_Redis__113" rel="nofollow">8. Redis 持久化</a></li> <li><a href="#9_Redis__135" rel="nofollow">9. Redis 事务</a></li> <li><a href="#10__Redis__Key__141" rel="nofollow">10. Redis 的并发竞争 Key 问题</a></li> <li><a href="#11_Redis_147" rel="nofollow">11. Redis实现分布锁</a></li> <li><a href="#12_HashMapredis_155" rel="nofollow">12. 为什么不使用HashMap，而是要使用redis</a></li> </ul> </div> </h1> <ul> <li>高性能：性能体现了系统的并行处理能力</li> <li>高可用：表示系统可以正常服务的时间</li> <li>高扩展：表示系统的扩展能力，流量高峰时能否在短时间内完成扩容</li> </ul> <blockquote> <p>性能衡量指标<br /> 大体上可以分为：吞吐量、响应时间、并发量、秒开率和正确性等<br /> 吞吐量：单位时间内执行的请求数量<br /> 并发量：并发量指的是系统能够同时处理的请求数量，反映的是系统的负载能力<br /> 秒开率：秒开率主要针对的是前端网页或者移动端APP来说的，如果一个前端网页或者APP能够在1秒内很平滑的打开，尤其是首页的加载<br /> 正确性：</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/8a9b877e6436306b046cfe3b4167f670.jpg" alt="Java高并发优化：中间件redis"></p> </h1> <p>日常分享模块：请求数据量大，网络IO操作</p> <blockquote> <p>解决方案：</p> <ol> <li>上拉加载机制，后端分页查询机制，每次请求一部分数据，</li> <li>这部分对于实时性，一致性的要求并不高，所以可以使用CDN，或者redis进行缓存</li> </ol> </blockquote> <p>购买模块：对于一致性要求高，典型的原子性要求</p> <blockquote> <p>解决方案：</p> <ol> <li>后端使用事务控制，买家账户的减操作，卖家账户的增操作，以及商品数量的更新。</li> </ol> <p>扩展<br /> 高并发的场景中，如果一本书是一个热点的商品，那么在这行数据上会产生大量的竞争。（秒杀）<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/4acb848b302927e2e26084ba0b95cc81.jpg" alt="Java高并发优化：中间件redis"><br /> 热点数据的处理性能影响<br /> 主要是在事务的执行时间，一个事务必须等待另一个事务commit之后才能开始。<br /> 如果在客户端去控制事务的逻辑的话，其会受网络IO的影响<br /> 所以解决方法是</p> <ol> <li>将事务的逻辑放在服务端。</li> <li>使用存储过程优化：事务行级锁的持有时间<br /> 这部分其实也不是redis所解决的问题</li> </ol> </blockquote> </h1> <p>为什么使用消息队列？</p> <blockquote> <p>消息队列的特点：异步，削峰，解耦</p> <ul> <li>削峰：当流量大的时候，服务器承受能力不够，大量的请求流量全部涌入到服务器中，会对服务器造成问题。所以先将请求放在队列中，然后服务器去从队列中取请求去处理即可。</li> <li>异步：消息队列的特点，将不需要同步的逻辑放在消息队列中，可以减少用户的等待时间</li> <li>解耦：</li> </ul> </blockquote> <p>为什么使用redis？</p> <blockquote> <ol> <li>性能：对于一些耗时久，结果不频繁变动的sql，适合将运行结果放入缓存，提高查询速度</li> <li>并发：高并发的情况下，所有请求直接访问数据库，数据库会出现连接异常。这个时候使用redis做一个缓冲操作，让请求先访问redis，而不是直接访问数据库。</li> </ol> </blockquote> </h1> <blockquote> <ol> <li>Redis是基于内存的NoSql（Redis 也支持持久化）</li> <li>Redis 采用单线程模式处理请求。这样做的原因有 2个：一个是因为采用了非阻塞的异步事件处理机制；另一个是缓存数据都是内存操作 IO 时间不会太长，单线程可以避免线程上下文切换产生的代价。</li> <li>Redis还有一个非常大的优势，就是除了 K-V 之外，还支持多种数据格式，例如 list、set、sorted set、hash 等。</li> <li>Redis提供主从同步机制，以及 Cluster 集群部署能力，能够提供高可用服务</li> </ol> </blockquote> </h1> <h2> <a id="1__58" rel="nofollow"></a>1. 缓存与数据库的一致性问题</h2> <p>对于读多写少的高并发场景，我们会经常使用redis做缓存来进行优化。<br /> 但是当出现数据更新的时候，如何保证redis缓存与数据库的数据一致性问题。<br /><strong>核心：更新数据库和更新缓存这两个操作，是无法保证原子性的</strong></p> <blockquote> <p>一致性的解决方案<br /> 先更新数据库再让缓存失效，当数据库更新成功，缓存失效失败的时候，发送失败消息到一个消息队列中去，自己消费，再次让缓存失效，直到成功</p> </blockquote> <h2> <a id="2__66" rel="nofollow"></a>2. 缓存雪崩</h2> <p>缓存雪崩是指设置缓存时采用了相同的过期时间，导致缓存在某一个时刻同时失效，或者缓存服务器宕机宕机导致缓存全面失效，请求全部转发到了DB层面，DB由于瞬间压力增大而导致崩溃。缓存失效导致的雪崩效应对底层系统的冲击是很大的。</p> <blockquote> <p>解决方案：</p> <ol> <li>事前：将缓存失效的时间分散，降低每一个缓存过期时间的重复率</li> <li>事前：如果是因为缓存服务器故障导致的问题，一方面尽量保证整个 redis 集群的⾼可⽤性，发现机器宕机尽快补上。另一方面，应用程序中可以采用多级缓存</li> <li>事中：限流，避免大量请求进入数据库</li> <li>事后：利⽤ redis 持久化机制保存的数据尽快恢复缓存</li> </ol> </blockquote> <h2> <a id="3__76" rel="nofollow"></a>3. 缓存穿透</h2> <p>缓存穿透说简单点就是⼤量请求的 key 根本不存在于缓存中，导致请求直接到了数据库上，根本没有<br /> 经过缓存这⼀层。举个例⼦：某个⿊客故意制造我们缓存中不存在的 key 发起⼤量请求，导致⼤量请求落到数据库。</p> <blockquote> <p>解决方案：</p> <ol> <li>缓存⽆效 key : 如果缓存和数据库都查不到某个 key 的数据就写⼀个到 redis 中去并设置过期时间（这种⽅式可以解决请求的 key 变化不频繁的情况，如果⿊客恶意攻击，每次构建不同的请求key，会导致 redis 中缓存⼤量⽆效的 key）</li> <li>布隆过滤器：将不符合规则的key进行过滤</li> </ol> </blockquote> </h1> <blockquote> <p>String<br /> Hash<br /> list<br /> set<br /> zset</p> </blockquote> </h1> <blockquote> <ol> <li> <p>定期删除：redis默认是每隔 100ms 就随机抽取⼀些设置了过期时间的key，检查其是否过期，如果过期就删除。注意这⾥是随机抽取的。为什么要随机呢？你想⼀想假如 redis 存了⼏⼗万个 key ，每隔100ms就遍历所有的设置过期时间的 key 的话，就会给 CPU 带来很⼤的负载</p> </li> <li> <p>惰性删除 ：定期删除可能会导致很多过期 key 到了时间并没有被删除掉。所以就有了惰性删除。假如你的过期 key，靠定期删除没有被删除掉，还停留在内存⾥，除⾮你的系统去查⼀下那个 key，才会被redis给删除掉。这就是所谓的惰性删除，也是够懒的</p> </li> </ol> </blockquote> <blockquote> <p>问题：</p> <ul> <li>但是仅仅通过设置过期时间还是有问题的。我们想⼀下：如果定期删除漏掉了很多过期 key，然后你也没及时去查，也就没⾛惰性删除，此时会怎么样？<br /> ⼤量过期key堆积在内存⾥，导致redis内存块耗尽</li> </ul> </h1> <ul> <li>怎么解决这个问题呢？<br /> redis 内存淘汰机制。</li> </ul> </blockquote> </h1> <blockquote> <ol> <li>volatile-lru：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使⽤的数据淘汰</li> <li>volatile-lfu：从已设置过期时间的数据集(server.db[i].expires)中挑选最不经常使⽤的数据<br /> 淘汰</li> <li>volatile-ttl：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li> <li>volatile-random：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li> <li>allkeys-lru：当内存不⾜以容纳新写⼊数据时，在键空间中，移除最近最少使⽤的key（这个是最常⽤的）</li> <li>allkeys-lfu：当内存不⾜以容纳新写⼊数据时，在键空间中，移除最不经常使⽤的key</li> <li>allkeys-random：从数据集（server.db[i].dict）中任意选择数据淘汰</li> <li>no-eviction：禁⽌驱逐数据，也就是说当内存不⾜以容纳新写⼊数据时，新写⼊操作会报错。</li> </ol> </blockquote> </h1> <ol> <li>快照（snapshotting，RDB）</li> </ol> <blockquote> <p>Redis可以通过创建快照来获得存储在内存⾥⾯的数据在某个时间点上的副本。Redis创建快照之后，可以对快照进⾏备份，可以将快照复制到其他服务器从⽽创建具有相同数据的服务器副本（Redis主从结构，主要⽤来提⾼Redis性能），还可以将快照留在原地以便重启服务器的时候使⽤</p> </blockquote> <blockquote> <p>在Redis的配置⽂件中存在三种不同的RDB 持久化⽅式，它们分别是：</p> <ol> <li>save 900 1 #在900秒(15分钟)之后，如果⾄少有1个key发⽣变化，Redis就会⾃动触发BGSAVE命令创建快照。</li> <li>save 300 10 #在300秒(5分钟)之后，如果⾄少有10个key发⽣变化，Redis就会⾃动触发BGSAVE命令创建快照。</li> <li>save 60 10000 #在60秒(1分钟)之后，如果⾄少有10000个key发⽣变化，Redis就会⾃动触发BGSAVE命令创建快照。</li> </ol> </blockquote> <ol start="2"> <li>只追加⽂件（append-only file,AOF）</li> </ol> <blockquote> <p>与快照持久化相⽐，AOF持久化 的实时性更好，因此已成为主流的持久化⽅案。默认情况下Redis没有开启AOF（append only file）⽅式的持久化，可以通过appendonly参数开启<br /> 开启AOF持久化后每执⾏⼀条会更改Redis中的数据的命令，Redis就会将该命令写⼊硬盘中的AOF⽂件。<br /> AOF⽂件的保存位置和RDB⽂件的位置相同，都是通过dir参数设置的，默认的⽂件名是 appendonly.aof</p> </blockquote> <blockquote> <p>在Redis的配置⽂件中存在三种不同的 AOF 持久化⽅式，它们分别是：</p> <ol> <li>appendfsync always #每次有数据修改发⽣时都会写⼊AOF⽂件,这样会严重降低Redis的速度</li> <li>appendfsync everysec #每秒钟同步⼀次，显示地将多个写命令同步到硬盘</li> <li>appendfsync no #让操作系统决定何时进⾏同步</li> </ol> </blockquote> </h1> <p>Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。事务提供了⼀种将多个命令请求打包，然后⼀次性、按顺序地执⾏多个命令的机制，并且在事务执⾏期间，服务器不会中断事务⽽改去执⾏其他客户端的命令请求，它会将事务中的所有命令都执⾏完毕，然后才去处理其他客户端的命令请求。<br /> 在传统的关系式数据库中，常常⽤ ACID 性质来检验事务功能的可靠性和安全性。在 Redis 中，事务总是具有原⼦性（Atomicity）、⼀致性（Consistency）和隔离性（Isolation），并且当 Redis 运⾏在某种特定的持久化模式下时，事务也具有持久性（Durability）</p> <blockquote> <p>Redis同⼀个事务中如果有⼀条命令执⾏失败，其后的命令仍然会被执⾏，没有回滚。（来⾃ issue：关于Redis事务不是原⼦性问题 ）</p> </blockquote> </h1> <p>所谓 Redis 的并发竞争 Key 的问题也就是多个系统同时对⼀个 key 进⾏操作，但是最后执⾏的顺序和我们期望的顺序不同，这样也就导致了结果的不同</p> <blockquote> <p>解决方案：<br /> 分布式锁（zookeeper 和 redis 都可以实现分布式锁）。（如果不存在 Redis 的并发竞争 Key 问题，不要使⽤分布式锁，这样会影响性能）</p> </blockquote> </h1> <p>java 中的Synchronized， Lock是单机环境中多线程的并发锁方案<br /> 那么在分布式的环境中，如何实现一个分布式锁呢？</p> <blockquote> <p>SET lock_key random_value NX PX 5000<br /> 加锁实际上就是在redis中，给Key键设置一个值，为避免死锁，并给定一个过期时间。<br /> 解锁的过程就是将Key键删除。但也不能乱删，不能说客户端1的请求将客户端2的锁给删除掉。这时候random_value的作用就体现出来</p> </blockquote> </h1> <blockquote> <ol> <li>Redis 可以用几十G内存来做缓存，Map 不行，一般 JVM 也就分几个 G 数据就够大了</li> <li>Redis 的缓存可以持久化，Map 是内存对象，程序一重启数据就没了</li> <li>Redis 可以实现分布式的缓存，Map 只能存在创建它的程序里</li> <li>Redis 缓存有过期机制，Map 本身无此功能</li> </ol> </blockquote></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-60032.htm">广州领养宠物救助站地址电话（广州领养宠物救助站地址电话是多少）</a></p>
+                                        <p>下一个：<a href="/news/article-60611.htm">附近有没有养狗的（离我家最近的养狗场）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-58921.htm" title="一片片枫叶从树上落下来就像（一片片枫叶从树上落下来就像什么补充句子）">一片片枫叶从树上落下来就像（一片片枫叶从树上落下来就像什么补充句子）</a></li>
+                        <li class="py-2"><a href="/news/article-57745.htm" title="青岛市动物疫病预防控制中心怎么样（青岛市动物疫病预防控制中心主任）">青岛市动物疫病预防控制中心怎么样（青岛市动物疫病预防控制中心主任）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-16-node-share.htm" title="VPN设备 | 2月16日18.8M/S|免费VPN/Shadowrocket/SSR/Clash/V2ray免费节点订阅分享">VPN设备 | 2月16日18.8M/S|免费VPN/Shadowrocket/SSR/Clash/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-57746.htm" title="广州领养宠物的地方是哪里（广州有领养宠物猫的地方吗?）">广州领养宠物的地方是哪里（广州有领养宠物猫的地方吗?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-19-free-v2ray.htm" title="VPN设备 | 2月19日18.3M/S|免费VPN/Shadowrocket/SSR/V2ray/Clash免费节点订阅分享">VPN设备 | 2月19日18.3M/S|免费VPN/Shadowrocket/SSR/V2ray/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-17-free-v2ray.htm" title="VPN设备 | 2月17日19.3M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">VPN设备 | 2月17日19.3M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-57251.htm" title="vs code编写web项目">vs code编写web项目</a></li>
+                        <li class="py-2"><a href="/news/article-60611.htm" title="附近有没有养狗的（离我家最近的养狗场）">附近有没有养狗的（离我家最近的养狗场）</a></li>
+                        <li class="py-2"><a href="/news/article-60610.htm" title="Java高并发优化：中间件redis">Java高并发优化：中间件redis</a></li>
+                        <li class="py-2"><a href="/news/article-57252.htm" title="中国宠物食品排名（中国宠物食品排名榜）">中国宠物食品排名（中国宠物食品排名榜）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Footer Section -->
+    <div id="footer">
+        <div class="container text-center">
+            <p>
+                <a href="/">首页</a> |
+                <a href="/free-node/">免费节点</a> |
+                <a href="/news/">新闻资讯</a> |
+                <a href="/about-us.htm">关于我们</a> |
+                <a href="/disclaimer.htm">免责申明</a> |
+                <a href="/privacy.htm">隐私申明</a> |
+                <a href="/sitemap.xml">网站地图</a>
+            </p>
+            <p>
+                <a href="/">VPN设备 机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jquery.1.11.1.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/SmoothScroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/nivo-lightbox.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jqBootstrapValidation.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/contact_me.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
