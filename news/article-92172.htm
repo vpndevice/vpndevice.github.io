@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="canonical" href="https://vpndevice.github.io/news/article-92172.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3.	Springmvc架构</title>
+        <meta name="description" content="架构流程 1、 用户发送请求至前端控制器DispatcherServlet 2、 DispatcherServlet收到请求调用HandlerMapping处理器映射器。 3、 处理器映射器根据请求u" />
+        <link rel="icon" href="/assets/website/img/v2rayunode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="VPN设备 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpndevice.github.io/news/article-92172.htm" />
+    <meta property="og:site_name" content="VPN设备 机场订阅节点官网" />
+    <meta property="og:title" content="3.	Springmvc架构" />
+    <meta property="og:image" content="https://vpndevice.github.io/uploads/20241222-1/c3c6a54ea49b309f84ab33c220f79ae0.webp" />
+        <meta property="og:release_date" content="2025-04-09T09:18:03" />
+    <meta property="og:updated_time" content="2025-04-09T09:18:03" />
+        <meta property="og:description" content="架构流程 1、 用户发送请求至前端控制器DispatcherServlet 2、 DispatcherServlet收到请求调用HandlerMapping处理器映射器。 3、 处理器映射器根据请求u" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="3.	Springmvc架构">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZMF5N22VMQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZMF5N22VMQ');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="page-top" data-page="detail">
+        <!-- Navigation
+        ==========================================-->
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+
+                <a class="navbar-brand" href="/">
+                                        <span>VPN设备</span>
+                                    </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                    </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+    <!-- Header -->
+    <header id="header">
+        <div class="intro category">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 intro-text">
+                            <h1>3.	Springmvc架构</h1>
+                            <p>
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- About Section -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230113/e7a6839450d9cfe882c5d49b10d36d21.jpg" alt="3.	Springmvc架构"><br /><strong>架构流程<br /> 1、 用户发送请求至前端控制器DispatcherServlet<br /> 2、 DispatcherServlet收到请求调用HandlerMapping处理器映射器。<br /> 3、 处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。<br /> 4、 DispatcherServlet通过HandlerAdapter处理器适配器调用处理器<br /> 5、 执行处理器(Controller，也叫后端控制器)。<br /> 6、 Controller执行完成返回ModelAndView<br /> 7、 HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet<br /> 8、 DispatcherServlet将ModelAndView传给ViewReslover视图解析器<br /> 9、 ViewReslover解析后返回具体View<br /> 10、 DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）。<br /> 11、 DispatcherServlet响应用户</strong></p> <p>3.3. 组件说明<br /> 以下组件通常使用框架提供实现：<br />  DispatcherServlet：前端控制器<br /> 用户请求到达前端控制器，它就相当于mvc模式中的c，dispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，dispatcherServlet的存在降低了组件之间的耦合性。<br />  HandlerMapping：处理器映射器<br /> HandlerMapping负责根据用户请求url找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。<br />  Handler：处理器<br /> Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。<br /> 由于Handler涉及到具体的用户业务请求，所以一般情况需要程序员根据业务需求开发Handler。</p> <p> HandlAdapter：处理器适配器<br /> 通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。<br /> 下图是许多不同的适配器，最终都可以使用usb接口连接</p> <p> ViewResolver：视图解析器<br /> View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。<br />  View：视图<br /> springmvc框架提供了很多的View视图类型的支持，包括：jstlView、freemarkerView、pdfView等。我们最常用的视图就是jsp。<br /> 一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由程序员根据业务需求开发具体的页面。</p> <p>在springmvc的各个组件中，处理器映射器、处理器适配器、视图解析器称为springmvc的三大组件。<br /> 需要用户开发的组件有handler、view</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91378.htm">动物疫苗管理法律法规最新文件 动物疫苗管理法律法规最新文件是什么</a></p>
+                                        <p>下一个：<a href="/news/article-92174.htm">成都宠物领养平台公众号（成都市宠物狗领养平台）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-free-node-subscribe.htm" title="VPN设备 | 3月18日22.8M/S|免费VPN/Shadowrocket/SSR/V2ray/Clash免费节点订阅分享">VPN设备 | 3月18日22.8M/S|免费VPN/Shadowrocket/SSR/V2ray/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-81350.htm" title="动物疫苗可以带上高铁吗北京疫情防控（动物疫苗可以带上高铁吗北京疫情防控）">动物疫苗可以带上高铁吗北京疫情防控（动物疫苗可以带上高铁吗北京疫情防控）</a></li>
+                        <li class="py-2"><a href="/news/article-83458.htm" title="Python Module_subprocess子进程(程序调用)">Python Module_subprocess子进程(程序调用)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-high-speed-nodes.htm" title="VPN设备 | 3月23日20.1M/S|免费VPN/Shadowrocket/SSR/Clash/V2ray免费节点订阅分享">VPN设备 | 3月23日20.1M/S|免费VPN/Shadowrocket/SSR/Clash/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-7-clash-v2ray-ss-ssr.htm" title="VPN设备 | 4月7日20.2M/S|免费VPN/V2ray/SSR/Shadowrocket/Clash免费节点订阅分享">VPN设备 | 4月7日20.2M/S|免费VPN/V2ray/SSR/Shadowrocket/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-89954.htm" title="开宠物店累不累人（一般开宠物店挣不挣）">开宠物店累不累人（一般开宠物店挣不挣）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-high-speed-nodes.htm" title="VPN设备 | 3月7日18.1M/S|免费VPN/Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">VPN设备 | 3月7日18.1M/S|免费VPN/Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-91378.htm" title="动物疫苗管理法律法规最新文件 动物疫苗管理法律法规最新文件是什么">动物疫苗管理法律法规最新文件 动物疫苗管理法律法规最新文件是什么</a></li>
+                        <li class="py-2"><a href="/news/article-87039.htm" title="劳动节福利~ 我给大家写了个博客园快速发文工具_在线工具">劳动节福利~ 我给大家写了个博客园快速发文工具_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-77205.htm" title="宠物粮食店铺名称怎么取 宠物粮食店铺名称怎么取好听">宠物粮食店铺名称怎么取 宠物粮食店铺名称怎么取好听</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Footer Section -->
+    <div id="footer">
+        <div class="container text-center">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">VPN设备 机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jquery.1.11.1.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/SmoothScroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/nivo-lightbox.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jqBootstrapValidation.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/contact_me.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
