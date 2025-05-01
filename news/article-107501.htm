@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="canonical" href="https://vpndevice.github.io/news/article-107501.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pyqt5入门到基本按钮弹窗，多窗口实现等</title>
+        <meta name="description" content="首先很重要的是，我们的工具！！！！ 本文使用的所有东西，python3.7，pycharm，pyqt5，designer 一、首先粗暴的pip我们需要的东西 pip install PyQt5 pip" />
+        <link rel="icon" href="/assets/website/img/v2rayunode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="VPN设备 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpndevice.github.io/news/article-107501.htm" />
+    <meta property="og:site_name" content="VPN设备 机场订阅节点官网" />
+    <meta property="og:title" content="pyqt5入门到基本按钮弹窗，多窗口实现等" />
+    <meta property="og:image" content="https://vpndevice.github.io/uploads/20241222-1/db72c394ca524824fbc01b1e4ee3f240.webp" />
+        <meta property="og:release_date" content="2025-04-29T08:04:15" />
+    <meta property="og:updated_time" content="2025-04-29T08:04:15" />
+        <meta property="og:description" content="首先很重要的是，我们的工具！！！！ 本文使用的所有东西，python3.7，pycharm，pyqt5，designer 一、首先粗暴的pip我们需要的东西 pip install PyQt5 pip" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="pyqt5入门到基本按钮弹窗，多窗口实现等">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/v2rayunode/nivo-lightbox/default.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZMF5N22VMQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZMF5N22VMQ');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="page-top" data-page="detail">
+        <!-- Navigation
+        ==========================================-->
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+
+                <a class="navbar-brand" href="/">
+                                        <span>VPN设备</span>
+                                    </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="/">首页</a></li>
+                                        <li><a href="/free-nodes/">免费节点</a></li>
+                                        <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a href="/news/">新闻资讯</a></li>
+                                        <li><a href="/client.htm">客户端</a></li>
+                                    </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+    <!-- Header -->
+    <header id="header">
+        <div class="intro category">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 intro-text">
+                            <h1>pyqt5入门到基本按钮弹窗，多窗口实现等</h1>
+                            <p>
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- About Section -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p><strong>首先很重要的是，我们的工具！！！！</strong><br /> 本文使用的所有东西，python3.7，pycharm，pyqt5，designer</p> <p><strong>一、首先粗暴的pip我们需要的东西</strong></p> <pre><code class="prism language-python">pip install PyQt5 pip install pyqt5<span class="token operator">-</span>tools   <span class="token triple-quoted-string string">"""关乎到designer这个工具,一定要下载哦"""</span> </code></pre> <p>然后按住win键，然后搜designer<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/3e55242c90240879a7bafde129c84ecc.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"><br /> 出现这个工具说明ok，工具上你已经成功了一半<br /> 请拉到桌面，后面要用</p> <p><strong>二、建立pycharm里的外部工具PyUIC</strong><br /> 这个工具有什么用？<br /> 直接把我们设计的设计的ui界面转换为py文件，你说方便不<br /> 具体操作，直接截图了，在外部工具里添加就好<br /> 注意几个点：<br /> 1.名字随意起，建议PyUIC<br /> 2.Program：python安装位置<br /> 3.Arguments：</p> <blockquote> <p><code>-m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py</code></p> </blockquote> <p>4.working dir：<code>$FileDir$</code></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230205/01430bfddd82102f521cbe7b4812aa8d.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"><br /><strong>三、打开designer，开始设计框架</strong><br /> 打开designer<br /> 首先创建窗体咯<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/4e62c8cddcb0b26a2aefed7b1216c27e.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"><br /> 然后随便设计一下，把需要的控件拖进去就好。<br /> 然后就是关键了，主要就是拖动pushbutton进去，刚入门，先学按钮事件吧。<br /> 我设计的第一个窗体new.ui<br /> 1、第一个界面<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/3fa413b57bff89182cef53730ddbf3bf.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"><br /> 很简单，就两个按钮，完事。<br /> 2、第二个界面<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/7cd874465645be0b24e1c8396a6c715d.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"></p> <p>3、第三个界面<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/422803fa3c80674aa8aca37c070e338e.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"><br /><strong>四、.ui文件转换为.py文件</strong><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/d81dc99b9264992033f4102a41bd9952.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"><br /> 直接使用外部工具点击完会生成一个.py文件的<br /><strong>五、让界面显示</strong><br /> 直接生成的.py文件运行，并不会显示，因为还没有实例化。<br /> 常用的实例化过程（绝对让你少走弯路）：<br /> 上面我们有3个窗口所以用完pyuic后有3个.py文件，分别是（<br /> 1、new.py<br /> 2、 login.py<br /> 3、second.py）<br /> ，我们先放着，不要乱动它的源码。新建一个python文件，main.py（我们的操作都在这里进行）<br /> 以下是main.py源码：</p> <pre><code class="prism language-python"><span class="token keyword">import</span> sys <span class="token keyword">from</span> PyQt5<span class="token punctuation">.</span>QtWidgets <span class="token keyword">import</span> QMainWindow<span class="token punctuation">,</span> QTextEdit<span class="token punctuation">,</span> QAction<span class="token punctuation">,</span> QFileDialog<span class="token punctuation">,</span> QApplication<span class="token punctuation">,</span> QMessageBox<span class="token punctuation">,</span>QDialog <span class="token keyword">from</span> new <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">import</span> new <span class="token keyword">as</span> n <span class="token keyword">import</span> login <span class="token keyword">as</span> l <span class="token keyword">import</span> second <span class="token keyword">as</span> s  <span class="token keyword">class</span> <span class="token class-name">chuang_1</span><span class="token punctuation">(</span>QMainWindow<span class="token punctuation">,</span> n<span class="token punctuation">.</span>Ui_MainWindow<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token triple-quoted-string string">"""继承类"""</span>     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parent<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>         <span class="token comment">#继承QMainWindow</span>         <span class="token builtin">super</span><span class="token punctuation">(</span>chuang_1<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>         self<span class="token punctuation">.</span>setupUi<span class="token punctuation">(</span>self<span class="token punctuation">)</span>   <span class="token keyword">class</span> <span class="token class-name">chuang_2</span><span class="token punctuation">(</span>QMainWindow<span class="token punctuation">,</span> l<span class="token punctuation">.</span>Ui_Form<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parent<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>         <span class="token builtin">super</span><span class="token punctuation">(</span>chuang_2<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>         self<span class="token punctuation">.</span>setupUi<span class="token punctuation">(</span>self<span class="token punctuation">)</span>   <span class="token keyword">class</span> <span class="token class-name">chuang_3</span><span class="token punctuation">(</span>QtWidgets<span class="token punctuation">.</span>QMainWindow<span class="token punctuation">,</span> s<span class="token punctuation">.</span>Ui_Form<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>parent<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>         <span class="token comment">#实例化窗口</span>         <span class="token builtin">super</span><span class="token punctuation">(</span>chuang_3<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>         self<span class="token punctuation">.</span>setupUi<span class="token punctuation">(</span>self<span class="token punctuation">)</span>   <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>     app <span class="token operator">=</span> QApplication<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span>     <span class="token comment"># 实例化第一个窗口</span>     c1 <span class="token operator">=</span> chuang_1<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment"># 第二个</span>     c2 <span class="token operator">=</span> chuang_2<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment"># 第三个</span>     c3 <span class="token operator">=</span> chuang_3<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment">#全部显示出来</span>     c1<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>     c2<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>     c3<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>     sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span>app<span class="token punctuation">.</span>exec_<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> </code></pre> <p>这样就显示我们的3个窗口了<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/9ada49e1fc9ce88206b9a8a9ff178a0c.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"><br /> 接下来就是对按钮等进行一些设置，让多个窗口可以切换起来<br /><strong>六、界面切换（按钮事件）</strong></p> <p>首先设置让第一个界面点击“登录”可以跳转到第二个界面<br /> 记一下语法：</p> <pre><code class="prism language-python">self<span class="token punctuation">.</span>pushubutton<span class="token punctuation">.</span>clicked<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>self<span class="token punctuation">.</span>hanshu<span class="token punctuation">)</span> </code></pre> <p>以下示范一下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230205/5d94c19cbe4055eab4add1c24ac7468f.jpg" alt="pyqt5入门到基本按钮弹窗，多窗口实现等"></p> <p>下次有空再继续详细说一下别的操作</p> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-106442.htm">springBoot过滤器、拦截器配置使用</a></p>
+                                        <p>下一个：<a href="/news/article-107503.htm">宠物领养系统论文参考文献怎么写（宠物领养网站论文）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-30-clash-v2ray-ss-ssr.htm" title="VPN设备 | 4月30日22.6M/S|免费VPN/V2ray/Shadowrocket/Clash/SSR免费节点订阅分享">VPN设备 | 4月30日22.6M/S|免费VPN/V2ray/Shadowrocket/Clash/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-87039.htm" title="劳动节福利~ 我给大家写了个博客园快速发文工具_在线工具">劳动节福利~ 我给大家写了个博客园快速发文工具_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-18-free-subscribe-node.htm" title="VPN设备 | 4月18日22M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">VPN设备 | 4月18日22M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-free-v2ray.htm" title="VPN设备 | 4月14日18.5M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">VPN设备 | 4月14日18.5M/S|免费VPN/V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-104980.htm" title="包含领养宠物的平台软件哪个好的词条">包含领养宠物的平台软件哪个好的词条</a></li>
+                        <li class="py-2"><a href="/news/article-94458.htm" title="猫抓多久过安全期打疫苗（猫抓过多久没事才安全）">猫抓多久过安全期打疫苗（猫抓过多久没事才安全）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-clash-v2ray-ss-ssr.htm" title="VPN设备 | 4月11日18.1M/S|免费VPN/Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">VPN设备 | 4月11日18.1M/S|免费VPN/Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-93644.htm" title="设计模式学习笔记状态模式及其实现">设计模式学习笔记状态模式及其实现</a></li>
+                        <li class="py-2"><a href="/news/article-87754.htm" title="宠物店亏本了怎么办（现在宠物店生意亏死）">宠物店亏本了怎么办（现在宠物店生意亏死）</a></li>
+                        <li class="py-2"><a href="/news/article-92894.htm" title="宠物粮食加工设备厂家有哪些品牌（宠物粮食加工设备厂家有哪些品牌的）">宠物粮食加工设备厂家有哪些品牌（宠物粮食加工设备厂家有哪些品牌的）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Footer Section -->
+    <div id="footer">
+        <div class="container text-center">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            <p>
+                <a href="/">VPN设备 机场订阅节点官网</a> 版权所有 Powered by WordPress
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jquery.1.11.1.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/SmoothScroll.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/nivo-lightbox.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/jqBootstrapValidation.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/contact_me.js"></script>
+    <script type="text/javascript" src="/assets/website/js/frontend/v2rayunode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
