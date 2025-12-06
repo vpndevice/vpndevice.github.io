@@ -322,19 +322,14 @@ A：打开 Clash 主界面，进入配置管理，点击“删除当前配置”
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的伪装域名配置需要注意什么？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 的策略组如何根据节点延迟自动切换？</h5></div>
     <div class="panel-body">
-        伪装域名必须真实可访问并有有效证书，否则客户端无法建立连接。正确配置可隐藏真实流量特征，降低被封锁风险，保证节点长期稳定可用。<hr />    </div>
+        策略组会根据节点延迟和丢包率自动选择最优节点。结合路由规则，可保证国内流量直连、海外流量走最佳节点，提高访问速度和连接稳定性，优化整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 多路复用对高频连接的优势？</h5></div>
     <div class="panel-body">
         多路复用可让多个短连接共享同一通道，减少握手和加密开销，提高吞吐量。适合高频短连接场景，如即时通讯和游戏，保证流量快速、稳定传输。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的策略组如何根据节点延迟自动切换？</h5></div>
-    <div class="panel-body">
-        策略组会根据节点延迟和丢包率自动选择最优节点。结合路由规则，可保证国内流量直连、海外流量走最佳节点，提高访问速度和连接稳定性，优化整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 配置文件中 inbound 和 outbound 有什么区别？</h5></div>
@@ -347,19 +342,24 @@ A：打开 Clash 主界面，进入配置管理，点击“删除当前配置”
         支持。用户可扫描节点二维码导入节点信息，也可手动输入节点参数。虽然不支持订阅自动更新，但对于轻量用户来说足够满足日常节点管理和流量分流需求。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 如何导入 V2Ray 节点？</h5></div>
-    <div class="panel-body">
-        打开 Nekoray 客户端后，点击“导入配置”，选择 V2Ray 或 Clash 类型的订阅链接。程序会自动解析节点列表，用户可一键连接或进行延迟测试。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的多出口节点如何优化访问速度？</h5></div>
     <div class="panel-body">
         通过为不同流量类型设置不同出口节点，WinXray 可以自动选择延迟最低的节点处理请求。结合策略组，可提高网页访问、视频播放和游戏等应用的速度与稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 的多路复用对短连接有何优势？</h5></div>
+    <div class="panel-heading"><h5>Trojan 的伪装域名配置需要注意什么？</h5></div>
     <div class="panel-body">
-        多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适合高频短连接应用，如游戏和即时通讯，可提高吞吐量和连接稳定性，优化网络体验。<hr />    </div>
+        伪装域名必须真实可访问并有有效证书，否则客户端无法建立连接。正确配置可隐藏真实流量特征，降低被封锁风险，保证节点长期稳定可用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的多策略组设置能提高访问效率吗？</h5></div>
+    <div class="panel-body">
+        多策略组可以将节点按用途、延迟或地域分类，结合规则文件自动分流不同流量。这样可以确保游戏、视频或网页流量走最优节点，提高整体访问效率和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 如何导入 V2Ray 节点？</h5></div>
+    <div class="panel-body">
+        打开 Nekoray 客户端后，点击“导入配置”，选择 V2Ray 或 Clash 类型的订阅链接。程序会自动解析节点列表，用户可一键连接或进行延迟测试。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Netch 是否可以代理局域网设备？</h5></div>
@@ -367,9 +367,9 @@ A：打开 Clash 主界面，进入配置管理，点击“删除当前配置”
         可以。Netch 支持启用局域网共享功能，使同一网络下的其他设备通过主机的代理访问外网。需确保防火墙允许入站连接，且代理端口在局域网中开放。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的多策略组设置能提高访问效率吗？</h5></div>
+    <div class="panel-heading"><h5>Hysteria2 的多路复用对短连接有何优势？</h5></div>
     <div class="panel-body">
-        多策略组可以将节点按用途、延迟或地域分类，结合规则文件自动分流不同流量。这样可以确保游戏、视频或网页流量走最优节点，提高整体访问效率和稳定性。    </div>
+        多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适合高频短连接应用，如游戏和即时通讯，可提高吞吐量和连接稳定性，优化网络体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -399,15 +399,15 @@ A：打开 Clash 主界面，进入配置管理，点击“删除当前配置”
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2"><a href="/free-nodes/2025-11-12-vpn-github.htm" title="VPN设备 | 11月12日20.3M/S|免费VPN/SSR节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点免费节点订阅分享">VPN设备 | 11月12日20.3M/S|免费VPN/SSR节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-10-free-node-subscribe-links.htm" title="VPN设备 | 10月10日22.6M/S|免费VPN/Shadowrocket节点/SSR节点/Singbox节点/Clash节点/V2ray节点免费节点订阅分享">VPN设备 | 10月10日22.6M/S|免费VPN/Shadowrocket节点/SSR节点/Singbox节点/Clash节点/V2ray节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-14-free-node-subscribe.htm" title="VPN设备 | 10月14日18.8M/S|免费VPN/Clash节点/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点免费节点订阅分享">VPN设备 | 10月14日18.8M/S|免费VPN/Clash节点/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-26-node-share-links.htm" title="VPN设备 | 10月26日21.2M/S|免费VPN/V2ray节点/SSR节点/Clash节点/Shadowrocket节点/Singbox节点免费节点订阅分享">VPN设备 | 10月26日21.2M/S|免费VPN/V2ray节点/SSR节点/Clash节点/Shadowrocket节点/Singbox节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-18-node-share.htm" title="VPN设备 | 11月18日21.4M/S|免费VPN/V2ray节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 11月18日21.4M/S|免费VPN/V2ray节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-30-free-vpn-node.htm" title="VPN设备 | 11月30日20.7M/S|免费VPN/SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 11月30日20.7M/S|免费VPN/SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-6-node-share.htm" title="VPN设备 | 11月6日20.2M/S|免费VPN/Shadowrocket节点/Clash节点/Singbox节点/SSR节点/V2ray节点免费节点订阅分享">VPN设备 | 11月6日20.2M/S|免费VPN/Shadowrocket节点/Clash节点/Singbox节点/SSR节点/V2ray节点免费节点订阅分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-17-free-vpn.htm" title="VPN设备 | 11月17日21.1M/S|免费VPN/Clash节点/SSR节点/V2ray节点/Shadowrocket节点/Singbox节点免费节点订阅分享">VPN设备 | 11月17日21.1M/S|免费VPN/Clash节点/SSR节点/V2ray节点/Shadowrocket节点/Singbox节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-1-top-vpn.htm" title="VPN设备 | 11月1日21.6M/S|免费VPN/V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Singbox节点免费节点订阅分享">VPN设备 | 11月1日21.6M/S|免费VPN/V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Singbox节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-22-mianfei-vpn.htm" title="VPN设备 | 11月22日22.5M/S|免费VPN/SSR节点/Singbox节点/Shadowrocket节点/Clash节点/V2ray节点免费节点订阅分享">VPN设备 | 11月22日22.5M/S|免费VPN/SSR节点/Singbox节点/Shadowrocket节点/Clash节点/V2ray节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-19-node-share-links.htm" title="VPN设备 | 10月19日20.3M/S|免费VPN/Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点免费节点订阅分享">VPN设备 | 10月19日20.3M/S|免费VPN/Shadowrocket节点/V2ray节点/Clash节点/SSR节点/Singbox节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-21-top-vpn.htm" title="VPN设备 | 11月21日22.6M/S|免费VPN/SSR节点/Singbox节点/V2ray节点/Clash节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 11月21日22.6M/S|免费VPN/SSR节点/Singbox节点/V2ray节点/Clash节点/Shadowrocket节点免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-6-node-share.htm" title="VPN设备 | 10月6日18.3M/S|免费VPN/Clash节点/SSR节点/V2ray节点/Singbox节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 10月6日18.3M/S|免费VPN/Clash节点/SSR节点/V2ray节点/Singbox节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-8-free-vpn.htm" title="VPN设备 | 11月8日21.6M/S|免费VPN/SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 11月8日21.6M/S|免费VPN/SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-4-share-vpn.htm" title="VPN设备 | 12月4日22.3M/S|免费VPN/Singbox节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 12月4日22.3M/S|免费VPN/Singbox节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-28-vpn-proxy.htm" title="VPN设备 | 11月28日18.8M/S|免费VPN/SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 11月28日18.8M/S|免费VPN/SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-12-3-free-node-subscribe-links.htm" title="VPN设备 | 12月3日21.9M/S|免费VPN/SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 12月3日21.9M/S|免费VPN/SSR节点/Singbox节点/Clash节点/V2ray节点/Shadowrocket节点免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-13-node-share-links.htm" title="VPN设备 | 11月13日18.4M/S|免费VPN/Shadowrocket节点/Singbox节点/SSR节点/V2ray节点/Clash节点免费节点订阅分享">VPN设备 | 11月13日18.4M/S|免费VPN/Shadowrocket节点/Singbox节点/SSR节点/V2ray节点/Clash节点免费节点订阅分享</a></li>
                     </ul>
     </div>
 </div>
@@ -419,10 +419,10 @@ A：打开 Clash 主界面，进入配置管理，点击“删除当前配置”
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                     </ul>
     </div>
