@@ -321,29 +321,14 @@ A4：合理配置带宽和流量监控，定期分析使用数据，必要时升
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 节点如何正确配置证书？</h5></div>
-    <div class="panel-body">
-        TLS 证书必须有效且域名匹配，否则客户端无法建立连接。建议使用受信任证书并确保证书链完整，可保证节点安全和长期可用性，同时提高伪装效果和抗封锁能力。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 的节点订阅更新是否可定时执行？</h5></div>
-    <div class="panel-body">
-        是的。Nekoray 可以设置订阅更新频率，如每天或每小时。程序会自动下载更新节点并替换旧节点，保证用户始终使用最新线路。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 的多节点测速机制是怎样的？</h5></div>
-    <div class="panel-body">
-        Matsuri 使用并发测速机制，可同时对多个节点进行延迟与带宽测试。测试结果会自动排序，并可根据延迟或速度自动切换最优节点，提升连接体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + XTLS 模式在移动网络下表现如何？</h5></div>
-    <div class="panel-body">
-        XTLS 模式减少握手次数和加密开销，适合高延迟或不稳定移动网络。结合策略组和多出口节点，可提高访问速度和连接稳定性，保证用户体验流畅。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 节点延迟检测对视频流量有何作用？</h5></div>
     <div class="panel-body">
         WinXray 会定期测速节点延迟和丢包率，并结合策略组自动选择最佳节点。保证视频流量通过低延迟节点，减少缓冲和卡顿，提高播放流畅度和体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan 节点如何正确配置证书？</h5></div>
+    <div class="panel-body">
+        TLS 证书必须有效且域名匹配，否则客户端无法建立连接。建议使用受信任证书并确保证书链完整，可保证节点安全和长期可用性，同时提高伪装效果和抗封锁能力。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Netch 全局与规则代理如何选择？</h5></div>
@@ -351,9 +336,9 @@ A4：合理配置带宽和流量监控，定期分析使用数据，必要时升
         全局代理将所有流量通过节点转发，适合游戏或全局科学上网；规则代理只针对指定应用、IP 或端口走节点，可优化带宽使用和访问效率，用户可根据需求灵活选择模式。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 如何管理用户流量配额？</h5></div>
+    <div class="panel-heading"><h5>SSR 协议如何提高节点隐蔽性？</h5></div>
     <div class="panel-body">
-        管理员可以为每个用户设置上传和下载带宽以及总流量上限。超出限制可自动降速或阻止访问，保证服务器资源合理分配，提高整体网络公平性和用户体验。<hr />    </div>
+        SSR 可通过选择协议和混淆方式伪装流量，降低被 DPI 检测和封锁风险。合理配置可增强节点隐蔽性和长期稳定性，保证科学上网体验顺畅可靠。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 如何精确匹配端口流量？</h5></div>
@@ -361,14 +346,29 @@ A4：合理配置带宽和流量监控，定期分析使用数据，必要时升
         Sing-box 支持按端口设置流量分流规则，将不同类型流量分配到不同节点。结合策略组使用，可提高访问速度和稳定性，实现精准流量管理和优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 协议如何提高节点隐蔽性？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 的多节点测速机制是怎样的？</h5></div>
     <div class="panel-body">
-        SSR 可通过选择协议和混淆方式伪装流量，降低被 DPI 检测和封锁风险。合理配置可增强节点隐蔽性和长期稳定性，保证科学上网体验顺畅可靠。<hr />    </div>
+        Matsuri 使用并发测速机制，可同时对多个节点进行延迟与带宽测试。测试结果会自动排序，并可根据延迟或速度自动切换最优节点，提升连接体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 如何按端口分流不同类型流量？</h5></div>
     <div class="panel-body">
-        Sing-box 支持根据端口匹配流量，将不同应用流量分配到指定节点。结合策略组可实现精准分流，提高访问速度和网络稳定性，优化整体网络体验和管理效率。    </div>
+        Sing-box 支持根据端口匹配流量，将不同应用流量分配到指定节点。结合策略组可实现精准分流，提高访问速度和网络稳定性，优化整体网络体验和管理效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + XTLS 模式在移动网络下表现如何？</h5></div>
+    <div class="panel-body">
+        XTLS 模式减少握手次数和加密开销，适合高延迟或不稳定移动网络。结合策略组和多出口节点，可提高访问速度和连接稳定性，保证用户体验流畅。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 的节点订阅更新是否可定时执行？</h5></div>
+    <div class="panel-body">
+        是的。Nekoray 可以设置订阅更新频率，如每天或每小时。程序会自动下载更新节点并替换旧节点，保证用户始终使用最新线路。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 如何管理用户流量配额？</h5></div>
+    <div class="panel-body">
+        管理员可以为每个用户设置上传和下载带宽以及总流量上限。超出限制可自动降速或阻止访问，保证服务器资源合理分配，提高整体网络公平性和用户体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -416,16 +416,16 @@ A4：合理配置带宽和流量监控，定期分析使用数据，必要时升
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-10-10-free-node-subscribe.htm" title="VPN设备 | 10月10日19.2M/S|免费VPN/Trojan节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点/V2ray节点免费节点订阅分享">VPN设备 | 10月10日19.2M/S|免费VPN/Trojan节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点/V2ray节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/top-vpn-2026-10-5.htm" title="VPN设备 | 10月5日21.3M/S|免费VPN/Singbox节点/V2ray节点/Clash节点/SSR节点/Trojan节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 10月5日21.3M/S|免费VPN/Singbox节点/V2ray节点/Clash节点/SSR节点/Trojan节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-22-vpn-proxy.htm" title="VPN设备 | 9月22日22.8M/S|免费VPN/V2ray节点/Singbox节点/Trojan节点/Clash节点/Shadowrocket节点/SSR节点免费节点订阅分享">VPN设备 | 9月22日22.8M/S|免费VPN/V2ray节点/Singbox节点/Trojan节点/Clash节点/Shadowrocket节点/SSR节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-6-node-share.htm" title="VPN设备 | 10月6日19.9M/S|免费VPN/Singbox节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点/SSR节点免费节点订阅分享">VPN设备 | 10月6日19.9M/S|免费VPN/Singbox节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点/SSR节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-10-top-vpn-node.htm" title="VPN设备 | 9月10日21.1M/S|免费VPN/SSR节点/Trojan节点/V2ray节点/Clash节点/Singbox节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 9月10日21.1M/S|免费VPN/SSR节点/Trojan节点/V2ray节点/Clash节点/Singbox节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-18-vpn-proxy.htm" title="VPN设备 | 9月18日22.8M/S|免费VPN/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Trojan节点/Clash节点免费节点订阅分享">VPN设备 | 9月18日22.8M/S|免费VPN/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Trojan节点/Clash节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-10-13.htm" title="VPN设备 | 10月13日21.4M/S|免费VPN/V2ray节点/Trojan节点/SSR节点/Singbox节点/Clash节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 10月13日21.4M/S|免费VPN/V2ray节点/Trojan节点/SSR节点/Singbox节点/Clash节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-5.htm" title="VPN设备 | 9月5日22.3M/S|免费VPN/Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点/Singbox节点免费节点订阅分享">VPN设备 | 9月5日22.3M/S|免费VPN/Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点/Singbox节点免费节点订阅分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/vpn-github-2026-9-23.htm" title="VPN设备 | 9月23日19.2M/S|免费VPN/Trojan节点/Shadowrocket节点/SSR节点/V2ray节点/Clash节点/Singbox节点免费节点订阅分享">VPN设备 | 9月23日19.2M/S|免费VPN/Trojan节点/Shadowrocket节点/SSR节点/V2ray节点/Clash节点/Singbox节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/top-vpn-2026-9-27.htm" title="VPN设备 | 9月27日22.7M/S|免费VPN/Shadowrocket节点/Singbox节点/Trojan节点/SSR节点/Clash节点/V2ray节点免费节点订阅分享">VPN设备 | 9月27日22.7M/S|免费VPN/Shadowrocket节点/Singbox节点/Trojan节点/SSR节点/Clash节点/V2ray节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-10-3.htm" title="VPN设备 | 10月3日22.2M/S|免费VPN/V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Trojan节点/Clash节点免费节点订阅分享">VPN设备 | 10月3日22.2M/S|免费VPN/V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Trojan节点/Clash节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/vpn-github-2026-9-11.htm" title="VPN设备 | 9月11日22.8M/S|免费VPN/Clash节点/V2ray节点/Trojan节点/SSR节点/Shadowrocket节点/Singbox节点免费节点订阅分享">VPN设备 | 9月11日22.8M/S|免费VPN/Clash节点/V2ray节点/Trojan节点/SSR节点/Shadowrocket节点/Singbox节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-16-node-share.htm" title="VPN设备 | 10月16日22.5M/S|免费VPN/Singbox节点/V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Clash节点免费节点订阅分享">VPN设备 | 10月16日22.5M/S|免费VPN/Singbox节点/V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Clash节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-18-vpn-proxy.htm" title="VPN设备 | 9月18日22.8M/S|免费VPN/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Trojan节点/Clash节点免费节点订阅分享">VPN设备 | 9月18日22.8M/S|免费VPN/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Trojan节点/Clash节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-10-17.htm" title="VPN设备 | 10月17日21.5M/S|免费VPN/V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点免费节点订阅分享">VPN设备 | 10月17日21.5M/S|免费VPN/V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-14-free-node-subscribe.htm" title="VPN设备 | 10月14日22.5M/S|免费VPN/Trojan节点/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Clash节点免费节点订阅分享">VPN设备 | 10月14日22.5M/S|免费VPN/Trojan节点/Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Clash节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/top-vpn-2026-9-17.htm" title="VPN设备 | 9月17日21.5M/S|免费VPN/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点/Clash节点/Singbox节点免费节点订阅分享">VPN设备 | 9月17日21.5M/S|免费VPN/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点/Clash节点/Singbox节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-10-free-node-subscribe.htm" title="VPN设备 | 10月10日19.2M/S|免费VPN/Trojan节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点/V2ray节点免费节点订阅分享">VPN设备 | 10月10日19.2M/S|免费VPN/Trojan节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点/V2ray节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-26-free-vpn-node.htm" title="VPN设备 | 9月26日22.3M/S|免费VPN/SSR节点/Trojan节点/V2ray节点/Singbox节点/Clash节点/Shadowrocket节点免费节点订阅分享">VPN设备 | 9月26日22.3M/S|免费VPN/SSR节点/Trojan节点/V2ray节点/Singbox节点/Clash节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -437,7 +437,7 @@ A4：合理配置带宽和流量监控，定期分析使用数据，必要时升
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">10</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
